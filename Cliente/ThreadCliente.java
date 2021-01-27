@@ -14,6 +14,7 @@ public class ThreadCliente extends Thread{
     private String nombre;
     private boolean running = true;
     private PantallaCliente refPantalla;
+    private int dinero;
 
     public ThreadCliente(Socket socketRef, PantallaCliente refPantalla) throws IOException {
         this.socketRef = socketRef;
@@ -33,12 +34,14 @@ public class ThreadCliente extends Thread{
                 switch (instruccionId){
                     case 1: // recibe el turno del jufador 1
                         nombre = reader.readUTF();
+                        dinero = reader.readInt();
                         int cantJug = reader.readInt();
                         while (cantJug != 0){
                             String enem = reader.readUTF();
                             refPantalla.añadirEnemigo(enem);
                             cantJug--;
                         }
+                        refPantalla.pintarDinero(dinero);
                     break;
                     case 2: // pasan un mensaje por el chat
                         usuario = reader.readUTF();
@@ -64,6 +67,21 @@ public class ThreadCliente extends Thread{
                         String enem = reader.readUTF();
                         if (!enem.equals(nombre)){
                             refPantalla.añadirEnemigo(enem);
+                        }
+                    break;
+                    
+                    case 7:
+                        x = reader.readInt();
+                        y = reader.readInt();
+                        String comp = reader.readUTF();
+                        dinero = reader.readInt();
+                        boolean construccion = reader.readBoolean();
+                        
+                        refPantalla.pintarDinero(dinero);
+                        if (construccion){
+                            refPantalla.addMensaje("Has construido un " + comp + " en " + ++x + ", " + ++y);
+                        } else{
+                            refPantalla.addMensaje("No se ha podido construir un " + comp + " en " + ++x + ", " + ++y);
                         }
                 }
             } catch (IOException ex) {

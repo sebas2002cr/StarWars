@@ -15,6 +15,8 @@ public class PantallaCliente extends javax.swing.JFrame {
     public ArrayList<String> enemigos = new ArrayList<String>();
     private int numEnemigo = 0;
     private boolean pIniciada = false;
+    private int mundos = 1;
+    private int mercados = 1;
     
     public PantallaCliente() {
         initComponents();
@@ -59,6 +61,28 @@ public class PantallaCliente extends javax.swing.JFrame {
         lblUsuarioLanzamiento.setText(usuario);*/
     }
     
+    public void pintarDinero(int dinero){
+        lblDinero.setText("$" + dinero);
+    }
+    
+    public void pintarMundos(int mundos){
+        if (mundos != 0){
+            lblMundos.setVisible(true);
+            lblMundos.setText("Mundos Disponibles: " + mundos);
+        } else{
+            lblMundos.setVisible(false);
+        }
+    }
+    
+    public void pintarMercados(int mercados){
+        if (mercados != 0){
+            lblMercados.setVisible(true);
+            lblMercados.setText("Mundos Disponibles: " + mercados);
+        } else{
+            lblMercados.setVisible(false);
+        }
+    }
+    
     public void añadirEnemigo(String ene){
         enemigos.add(ene);
         
@@ -83,6 +107,16 @@ public class PantallaCliente extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "La partida no ha iniciado", "Error", 0);
             }
         } catch (IOException ex) {
+        }
+    }
+    
+    public void construir(int x, int y){
+        try{
+            refCliente.hiloCliente.writer.writeInt(7);
+            refCliente.hiloCliente.writer.writeInt(x);
+            refCliente.hiloCliente.writer.writeInt(y);
+            refCliente.hiloCliente.writer.writeUTF(cbxConstruir.getSelectedItem().toString());
+        } catch(IOException ex){
         }
     }
 
@@ -550,6 +584,10 @@ public class PantallaCliente extends javax.swing.JFrame {
         btnIniciar = new javax.swing.JButton();
         lblFase = new javax.swing.JLabel();
         cbxAtaque = new javax.swing.JComboBox<>();
+        cbxConstruir = new javax.swing.JComboBox<>();
+        lblDinero = new javax.swing.JLabel();
+        lblMundos = new javax.swing.JLabel();
+        lblMercados = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -3744,6 +3782,17 @@ public class PantallaCliente extends javax.swing.JFrame {
 
         cbxAtaque.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Misil", "Multi-shot", "Bombo", "Combo-shot" }));
 
+        cbxConstruir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mundo", "Conector", "Mercado", "Mina", "Armería", "Templo" }));
+
+        lblDinero.setForeground(new java.awt.Color(255, 255, 255));
+        lblDinero.setText("$4000");
+
+        lblMundos.setForeground(new java.awt.Color(255, 255, 255));
+        lblMundos.setText("Mundos Disponibles: 1");
+
+        lblMercados.setForeground(new java.awt.Color(255, 255, 255));
+        lblMercados.setText("Mercados Disponibles: 1");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -3903,36 +3952,6 @@ public class PantallaCliente extends javax.swing.JFrame {
                                 .addComponent(Casilla14x14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
                                 .addComponent(Casilla14x15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Casilla1x1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)
-                                .addComponent(Casilla1x15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Casilla2x1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
@@ -4172,7 +4191,46 @@ public class PantallaCliente extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addComponent(Casilla9x14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
-                                .addComponent(Casilla9x15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(Casilla9x15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Casilla1x1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblDinero, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Casilla1x4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblMundos, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(1, 1, 1)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Casilla1x10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)
+                                        .addComponent(Casilla1x15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblMercados, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -4612,48 +4670,51 @@ public class PantallaCliente extends javax.swing.JFrame {
                         .addGap(1, 1, 1)
                         .addComponent(Casilla15x5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
-                        .addComponent(Casilla15x6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(Casilla15x15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(Casilla15x6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x12, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(Casilla15x15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(CasillaE15x1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
                                 .addComponent(CasillaE15x2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
                                 .addComponent(CasillaE15x3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)
-                                .addComponent(CasillaE15x4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(cbxAtaque, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(1, 1, 1)
-                        .addComponent(CasillaE15x5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(CasillaE15x6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(CasillaE15x7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(CasillaE15x8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(CasillaE15x9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)
-                        .addComponent(CasillaE15x10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CasillaE15x4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(CasillaE15x5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(CasillaE15x6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(CasillaE15x7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(CasillaE15x8, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(CasillaE15x9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(1, 1, 1)
+                                .addComponent(CasillaE15x10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cbxConstruir, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cbxAtaque, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(1, 1, 1)
                         .addComponent(CasillaE15x11, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(1, 1, 1)
@@ -4693,10 +4754,18 @@ public class PantallaCliente extends javax.swing.JFrame {
                             .addComponent(txfMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnEnviar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(47, 47, 47)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lblEnemigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnSiguiente))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(lblEnemigo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnSiguiente)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(24, 24, 24)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lblDinero, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblMundos, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblMercados, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -5215,8 +5284,10 @@ public class PantallaCliente extends javax.swing.JFrame {
                         .addComponent(lblFase, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(47, 47, 47)
-                        .addComponent(cbxAtaque, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(21, 21, 21))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxAtaque, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxConstruir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -5255,1126 +5326,1576 @@ public class PantallaCliente extends javax.swing.JFrame {
     private void Casilla1x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x1ActionPerformed
         int x = 0;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x1ActionPerformed
 
     private void Casilla1x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x2ActionPerformed
         int x = 0;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x2ActionPerformed
 
     private void Casilla1x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x3ActionPerformed
         int x = 0;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x3ActionPerformed
 
     private void Casilla1x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x4ActionPerformed
         int x = 0;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x4ActionPerformed
 
     private void Casilla1x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x5ActionPerformed
         int x = 0;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x5ActionPerformed
 
     private void Casilla1x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x6ActionPerformed
         int x = 0;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x6ActionPerformed
 
     private void Casilla1x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x7ActionPerformed
         int x = 0;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x7ActionPerformed
 
     private void Casilla1x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x8ActionPerformed
         int x = 0;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x8ActionPerformed
 
     private void Casilla1x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x9ActionPerformed
         int x = 0;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x9ActionPerformed
 
     private void Casilla1x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x10ActionPerformed
         int x = 0;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x10ActionPerformed
 
     private void Casilla1x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x11ActionPerformed
         int x = 0;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x11ActionPerformed
 
     private void Casilla1x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x12ActionPerformed
         int x = 0;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x12ActionPerformed
 
     private void Casilla1x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x13ActionPerformed
         int x = 0;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x13ActionPerformed
 
     private void Casilla1x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x14ActionPerformed
         int x = 0;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x14ActionPerformed
 
     private void Casilla1x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla1x15ActionPerformed
         int x = 0;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla1x15ActionPerformed
 
     private void Casilla2x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x1ActionPerformed
         int x = 1;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x1ActionPerformed
 
     private void Casilla2x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x2ActionPerformed
         int x = 1;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x2ActionPerformed
 
     private void Casilla2x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x3ActionPerformed
         int x = 1;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x3ActionPerformed
 
     private void Casilla2x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x4ActionPerformed
         int x = 1;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x4ActionPerformed
 
     private void Casilla2x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x5ActionPerformed
         int x = 1;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x5ActionPerformed
 
     private void Casilla2x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x6ActionPerformed
         int x = 1;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x6ActionPerformed
 
     private void Casilla2x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x7ActionPerformed
         int x = 1;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x7ActionPerformed
 
     private void Casilla2x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x8ActionPerformed
         int x = 1;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x8ActionPerformed
 
     private void Casilla2x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x9ActionPerformed
         int x = 1;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x9ActionPerformed
 
     private void Casilla2x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x10ActionPerformed
         int x = 1;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x10ActionPerformed
 
     private void Casilla2x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x11ActionPerformed
         int x = 1;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x11ActionPerformed
 
     private void Casilla2x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x12ActionPerformed
         int x = 1;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x12ActionPerformed
 
     private void Casilla2x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x13ActionPerformed
         int x = 1;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x13ActionPerformed
 
     private void Casilla2x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x14ActionPerformed
         int x = 1;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x14ActionPerformed
 
     private void Casilla2x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla2x15ActionPerformed
         int x = 1;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla2x15ActionPerformed
 
     private void Casilla3x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x1ActionPerformed
         int x = 2;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x1ActionPerformed
 
     private void Casilla3x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x2ActionPerformed
         int x = 2;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x2ActionPerformed
 
     private void Casilla3x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x3ActionPerformed
         int x = 2;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x3ActionPerformed
 
     private void Casilla3x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x4ActionPerformed
         int x = 2;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x4ActionPerformed
 
     private void Casilla3x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x5ActionPerformed
         int x = 2;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x5ActionPerformed
 
     private void Casilla3x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x6ActionPerformed
         int x = 2;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x6ActionPerformed
 
     private void Casilla3x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x7ActionPerformed
         int x = 2;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x7ActionPerformed
 
     private void Casilla3x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x8ActionPerformed
         int x = 2;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x8ActionPerformed
 
     private void Casilla3x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x9ActionPerformed
         int x = 2;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x9ActionPerformed
 
     private void Casilla3x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x10ActionPerformed
         int x = 2;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x10ActionPerformed
 
     private void Casilla3x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x11ActionPerformed
         int x = 2;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x11ActionPerformed
 
     private void Casilla3x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x12ActionPerformed
         int x = 2;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x12ActionPerformed
 
     private void Casilla3x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x13ActionPerformed
         int x = 2;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x13ActionPerformed
 
     private void Casilla3x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x14ActionPerformed
         int x = 2;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x14ActionPerformed
 
     private void Casilla3x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla3x15ActionPerformed
         int x = 2;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla3x15ActionPerformed
 
     private void Casilla4x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x1ActionPerformed
         int x = 3;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x1ActionPerformed
 
     private void Casilla4x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x2ActionPerformed
         int x = 3;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x2ActionPerformed
 
     private void Casilla4x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x3ActionPerformed
         int x = 3;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x3ActionPerformed
 
     private void Casilla4x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x4ActionPerformed
         int x = 3;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x4ActionPerformed
 
     private void Casilla4x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x5ActionPerformed
         int x = 3;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x5ActionPerformed
 
     private void Casilla4x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x6ActionPerformed
         int x = 3;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x6ActionPerformed
 
     private void Casilla4x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x7ActionPerformed
         int x = 3;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x7ActionPerformed
 
     private void Casilla4x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x8ActionPerformed
         int x = 3;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x8ActionPerformed
 
     private void Casilla4x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x9ActionPerformed
         int x = 3;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x9ActionPerformed
 
     private void Casilla4x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x10ActionPerformed
         int x = 3;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x10ActionPerformed
 
     private void Casilla4x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x11ActionPerformed
         int x = 3;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x11ActionPerformed
 
     private void Casilla4x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x12ActionPerformed
         int x = 3;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x12ActionPerformed
 
     private void Casilla4x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x13ActionPerformed
         int x = 3;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x13ActionPerformed
 
     private void Casilla4x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x14ActionPerformed
         int x = 3;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x14ActionPerformed
 
     private void Casilla4x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla4x15ActionPerformed
         int x = 3;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla4x15ActionPerformed
 
     private void Casilla5x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x1ActionPerformed
         int x = 4;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x1ActionPerformed
 
     private void Casilla5x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x2ActionPerformed
         int x = 4;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x2ActionPerformed
 
     private void Casilla5x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x3ActionPerformed
         int x = 4;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x3ActionPerformed
 
     private void Casilla5x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x4ActionPerformed
         int x = 4;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x4ActionPerformed
 
     private void Casilla5x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x5ActionPerformed
         int x = 4;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x5ActionPerformed
 
     private void Casilla5x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x6ActionPerformed
         int x = 4;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x6ActionPerformed
 
     private void Casilla5x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x7ActionPerformed
         int x = 4;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x7ActionPerformed
 
     private void Casilla5x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x8ActionPerformed
         int x = 4;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x8ActionPerformed
 
     private void Casilla5x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x9ActionPerformed
         int x = 4;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x9ActionPerformed
 
     private void Casilla5x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x10ActionPerformed
         int x = 4;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x10ActionPerformed
 
     private void Casilla5x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x11ActionPerformed
         int x = 4;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x11ActionPerformed
 
     private void Casilla5x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x12ActionPerformed
         int x = 4;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x12ActionPerformed
 
     private void Casilla5x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x13ActionPerformed
         int x = 4;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x13ActionPerformed
 
     private void Casilla5x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x14ActionPerformed
         int x = 4;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x14ActionPerformed
 
     private void Casilla5x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla5x15ActionPerformed
         int x = 4;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla5x15ActionPerformed
 
     private void Casilla6x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x1ActionPerformed
         int x = 5;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x1ActionPerformed
 
     private void Casilla6x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x2ActionPerformed
         int x = 5;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x2ActionPerformed
 
     private void Casilla6x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x3ActionPerformed
         int x = 5;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x3ActionPerformed
 
     private void Casilla6x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x4ActionPerformed
         int x = 5;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x4ActionPerformed
 
     private void Casilla6x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x5ActionPerformed
         int x = 5;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x5ActionPerformed
 
     private void Casilla6x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x6ActionPerformed
         int x = 5;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x6ActionPerformed
 
     private void Casilla6x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x7ActionPerformed
         int x = 5;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x7ActionPerformed
 
     private void Casilla6x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x8ActionPerformed
         int x = 5;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x8ActionPerformed
 
     private void Casilla6x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x9ActionPerformed
         int x = 5;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x9ActionPerformed
 
     private void Casilla6x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x10ActionPerformed
         int x = 5;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x10ActionPerformed
 
     private void Casilla6x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x11ActionPerformed
         int x = 5;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x11ActionPerformed
 
     private void Casilla6x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x12ActionPerformed
         int x = 5;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x12ActionPerformed
 
     private void Casilla6x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x13ActionPerformed
         int x = 5;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x13ActionPerformed
 
     private void Casilla6x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x14ActionPerformed
         int x = 5;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x14ActionPerformed
 
     private void Casilla6x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla6x15ActionPerformed
         int x = 5;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla6x15ActionPerformed
 
     private void Casilla7x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x1ActionPerformed
         int x = 6;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x1ActionPerformed
 
     private void Casilla7x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x2ActionPerformed
         int x = 6;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x2ActionPerformed
 
     private void Casilla7x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x3ActionPerformed
         int x = 6;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x3ActionPerformed
 
     private void Casilla7x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x4ActionPerformed
         int x = 6;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x4ActionPerformed
 
     private void Casilla7x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x5ActionPerformed
         int x = 6;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x5ActionPerformed
 
     private void Casilla7x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x6ActionPerformed
         int x = 6;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x6ActionPerformed
 
     private void Casilla7x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x7ActionPerformed
         int x = 6;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x7ActionPerformed
 
     private void Casilla7x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x8ActionPerformed
         int x = 6;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x8ActionPerformed
 
     private void Casilla7x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x9ActionPerformed
         int x = 6;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x9ActionPerformed
 
     private void Casilla7x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x10ActionPerformed
         int x = 6;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x10ActionPerformed
 
     private void Casilla7x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x11ActionPerformed
         int x = 6;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x11ActionPerformed
 
     private void Casilla7x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x12ActionPerformed
         int x = 6;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x12ActionPerformed
 
     private void Casilla7x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x13ActionPerformed
         int x = 6;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x13ActionPerformed
 
     private void Casilla7x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x14ActionPerformed
         int x = 6;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x14ActionPerformed
 
     private void Casilla7x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla7x15ActionPerformed
         int x = 6;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla7x15ActionPerformed
 
     private void Casilla8x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x1ActionPerformed
         int x = 7;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x1ActionPerformed
 
     private void Casilla8x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x2ActionPerformed
         int x = 7;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x2ActionPerformed
 
     private void Casilla8x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x3ActionPerformed
         int x = 7;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x3ActionPerformed
 
     private void Casilla8x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x4ActionPerformed
         int x = 7;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x4ActionPerformed
 
     private void Casilla8x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x5ActionPerformed
         int x = 7;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x5ActionPerformed
 
     private void Casilla8x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x6ActionPerformed
         int x = 7;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x6ActionPerformed
 
     private void Casilla8x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x7ActionPerformed
         int x = 7;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x7ActionPerformed
 
     private void Casilla8x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x8ActionPerformed
         int x = 7;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x8ActionPerformed
 
     private void Casilla8x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x9ActionPerformed
         int x = 7;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x9ActionPerformed
 
     private void Casilla8x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x10ActionPerformed
         int x = 7;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x10ActionPerformed
 
     private void Casilla8x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x11ActionPerformed
         int x = 7;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x11ActionPerformed
 
     private void Casilla8x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x12ActionPerformed
         int x = 7;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x12ActionPerformed
 
     private void Casilla8x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x13ActionPerformed
         int x = 7;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x13ActionPerformed
 
     private void Casilla8x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x14ActionPerformed
         int x = 7;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x14ActionPerformed
 
     private void Casilla8x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla8x15ActionPerformed
         int x = 7;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla8x15ActionPerformed
 
     private void Casilla9x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x1ActionPerformed
         int x = 8;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x1ActionPerformed
 
     private void Casilla9x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x2ActionPerformed
         int x = 8;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x2ActionPerformed
 
     private void Casilla9x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x3ActionPerformed
         int x = 8;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x3ActionPerformed
 
     private void Casilla9x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x4ActionPerformed
         int x = 8;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x4ActionPerformed
 
     private void Casilla9x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x5ActionPerformed
         int x = 8;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x5ActionPerformed
 
     private void Casilla9x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x6ActionPerformed
         int x = 8;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x6ActionPerformed
 
     private void Casilla9x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x7ActionPerformed
         int x = 8;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x7ActionPerformed
 
     private void Casilla9x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x8ActionPerformed
         int x = 8;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x8ActionPerformed
 
     private void Casilla9x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x9ActionPerformed
         int x = 8;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x9ActionPerformed
 
     private void Casilla9x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x10ActionPerformed
         int x = 8;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x10ActionPerformed
 
     private void Casilla9x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x11ActionPerformed
         int x = 8;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x11ActionPerformed
 
     private void Casilla9x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x12ActionPerformed
         int x = 8;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x12ActionPerformed
 
     private void Casilla9x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x13ActionPerformed
         int x = 8;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x13ActionPerformed
 
     private void Casilla9x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x14ActionPerformed
         int x = 8;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x14ActionPerformed
 
     private void Casilla9x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla9x15ActionPerformed
         int x = 8;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla9x15ActionPerformed
 
     private void Casilla10x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x1ActionPerformed
         int x = 9;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x1ActionPerformed
 
     private void Casilla10x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x2ActionPerformed
         int x = 9;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x2ActionPerformed
 
     private void Casilla10x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x3ActionPerformed
         int x = 9;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x3ActionPerformed
 
     private void Casilla10x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x4ActionPerformed
         int x = 9;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x4ActionPerformed
 
     private void Casilla10x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x5ActionPerformed
         int x = 9;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x5ActionPerformed
 
     private void Casilla10x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x6ActionPerformed
         int x = 9;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x6ActionPerformed
 
     private void Casilla10x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x7ActionPerformed
         int x = 9;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x7ActionPerformed
 
     private void Casilla10x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x8ActionPerformed
         int x = 9;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x8ActionPerformed
 
     private void Casilla10x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x9ActionPerformed
         int x = 9;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x9ActionPerformed
 
     private void Casilla10x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x10ActionPerformed
         int x = 9;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x10ActionPerformed
 
     private void Casilla10x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x11ActionPerformed
         int x = 9;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x11ActionPerformed
 
     private void Casilla10x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x12ActionPerformed
         int x = 9;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x12ActionPerformed
 
     private void Casilla10x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x13ActionPerformed
         int x = 9;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x13ActionPerformed
 
     private void Casilla10x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x14ActionPerformed
         int x = 9;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x14ActionPerformed
 
     private void Casilla10x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla10x15ActionPerformed
         int x = 9;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla10x15ActionPerformed
 
     private void Casilla11x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x1ActionPerformed
         int x = 10;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x1ActionPerformed
 
     private void Casilla11x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x2ActionPerformed
         int x = 10;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x2ActionPerformed
 
     private void Casilla11x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x3ActionPerformed
         int x = 10;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x3ActionPerformed
 
     private void Casilla11x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x4ActionPerformed
         int x = 10;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x4ActionPerformed
 
     private void Casilla11x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x5ActionPerformed
         int x = 10;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x5ActionPerformed
 
     private void Casilla11x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x6ActionPerformed
         int x = 10;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x6ActionPerformed
 
     private void Casilla11x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x7ActionPerformed
         int x = 10;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x7ActionPerformed
 
     private void Casilla11x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x8ActionPerformed
         int x = 10;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x8ActionPerformed
 
     private void Casilla11x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x9ActionPerformed
         int x = 10;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x9ActionPerformed
 
     private void Casilla11x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x10ActionPerformed
         int x = 10;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x10ActionPerformed
 
     private void Casilla11x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x11ActionPerformed
         int x = 10;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x11ActionPerformed
 
     private void Casilla11x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x12ActionPerformed
         int x = 10;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x12ActionPerformed
 
     private void Casilla11x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x13ActionPerformed
         int x = 10;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x13ActionPerformed
 
     private void Casilla11x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x14ActionPerformed
         int x = 10;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x14ActionPerformed
 
     private void Casilla11x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla11x15ActionPerformed
         int x = 10;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla11x15ActionPerformed
 
     private void Casilla12x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x1ActionPerformed
         int x = 11;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x1ActionPerformed
 
     private void Casilla12x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x2ActionPerformed
         int x = 11;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x2ActionPerformed
 
     private void Casilla12x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x3ActionPerformed
         int x = 11;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x3ActionPerformed
 
     private void Casilla12x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x4ActionPerformed
         int x = 11;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x4ActionPerformed
 
     private void Casilla12x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x5ActionPerformed
         int x = 11;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x5ActionPerformed
 
     private void Casilla12x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x6ActionPerformed
         int x = 11;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x6ActionPerformed
 
     private void Casilla12x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x7ActionPerformed
         int x = 11;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x7ActionPerformed
 
     private void Casilla12x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x8ActionPerformed
         int x = 11;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x8ActionPerformed
 
     private void Casilla12x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x9ActionPerformed
         int x = 11;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x9ActionPerformed
 
     private void Casilla12x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x10ActionPerformed
         int x = 11;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x10ActionPerformed
 
     private void Casilla12x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x11ActionPerformed
         int x = 11;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x11ActionPerformed
 
     private void Casilla12x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x12ActionPerformed
         int x = 11;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x12ActionPerformed
 
     private void Casilla12x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x13ActionPerformed
         int x = 11;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x13ActionPerformed
 
     private void Casilla12x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x14ActionPerformed
         int x = 11;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x14ActionPerformed
 
     private void Casilla12x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla12x15ActionPerformed
         int x = 11;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla12x15ActionPerformed
 
     private void Casilla13x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x1ActionPerformed
         int x = 12;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x1ActionPerformed
 
     private void Casilla13x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x2ActionPerformed
         int x = 12;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x2ActionPerformed
 
     private void Casilla13x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x3ActionPerformed
         int x = 12;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x3ActionPerformed
 
     private void Casilla13x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x4ActionPerformed
         int x = 12;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x4ActionPerformed
 
     private void Casilla13x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x5ActionPerformed
         int x = 12;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x5ActionPerformed
 
     private void Casilla13x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x6ActionPerformed
         int x = 12;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x6ActionPerformed
 
     private void Casilla13x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x7ActionPerformed
         int x = 12;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x7ActionPerformed
 
     private void Casilla13x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x8ActionPerformed
         int x = 12;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x8ActionPerformed
 
     private void Casilla13x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x9ActionPerformed
         int x = 12;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x9ActionPerformed
 
     private void Casilla13x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x10ActionPerformed
         int x = 12;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x10ActionPerformed
 
     private void Casilla13x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x11ActionPerformed
         int x = 12;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x11ActionPerformed
 
     private void Casilla13x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x12ActionPerformed
         int x = 12;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x12ActionPerformed
 
     private void Casilla13x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x13ActionPerformed
         int x = 12;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x13ActionPerformed
 
     private void Casilla13x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x14ActionPerformed
         int x = 12;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x14ActionPerformed
 
     private void Casilla13x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla13x15ActionPerformed
         int x = 12;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla13x15ActionPerformed
 
     private void Casilla14x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x1ActionPerformed
         int x = 13;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x1ActionPerformed
 
     private void Casilla14x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x2ActionPerformed
         int x = 13;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x2ActionPerformed
 
     private void Casilla14x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x3ActionPerformed
         int x = 13;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x3ActionPerformed
 
     private void Casilla14x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x4ActionPerformed
         int x = 13;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x4ActionPerformed
 
     private void Casilla14x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x5ActionPerformed
         int x = 13;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x5ActionPerformed
 
     private void Casilla14x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x6ActionPerformed
         int x = 13;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x6ActionPerformed
 
     private void Casilla14x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x7ActionPerformed
         int x = 13;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x7ActionPerformed
 
     private void Casilla14x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x8ActionPerformed
         int x = 13;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x8ActionPerformed
 
     private void Casilla14x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x9ActionPerformed
         int x = 13;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x9ActionPerformed
 
     private void Casilla14x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x10ActionPerformed
         int x = 13;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x10ActionPerformed
 
     private void Casilla14x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x11ActionPerformed
         int x = 13;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x11ActionPerformed
 
     private void Casilla14x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x12ActionPerformed
         int x = 13;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x12ActionPerformed
 
     private void Casilla14x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x13ActionPerformed
         int x = 13;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x13ActionPerformed
 
     private void Casilla14x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x14ActionPerformed
         int x = 13;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x14ActionPerformed
 
     private void Casilla14x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla14x15ActionPerformed
         int x = 13;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla14x15ActionPerformed
 
     private void Casilla15x1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x1ActionPerformed
         int x = 14;
         int y = 0;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x1ActionPerformed
 
     private void Casilla15x2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x2ActionPerformed
         int x = 14;
         int y = 1;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x2ActionPerformed
 
     private void Casilla15x3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x3ActionPerformed
         int x = 14;
         int y = 2;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x3ActionPerformed
 
     private void Casilla15x4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x4ActionPerformed
         int x = 14;
         int y = 3;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x4ActionPerformed
 
     private void Casilla15x5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x5ActionPerformed
         int x = 14;
         int y = 4;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x5ActionPerformed
 
     private void Casilla15x6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x6ActionPerformed
         int x = 14;
         int y = 5;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x6ActionPerformed
 
     private void Casilla15x7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x7ActionPerformed
         int x = 14;
         int y = 6;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x7ActionPerformed
 
     private void Casilla15x8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x8ActionPerformed
         int x = 14;
         int y = 7;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x8ActionPerformed
 
     private void Casilla15x9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x9ActionPerformed
         int x = 14;
         int y = 8;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x9ActionPerformed
 
     private void Casilla15x10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x10ActionPerformed
         int x = 14;
         int y = 9;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x10ActionPerformed
 
     private void Casilla15x11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x11ActionPerformed
         int x = 14;
         int y = 10;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x11ActionPerformed
 
     private void Casilla15x12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x12ActionPerformed
         int x = 14;
         int y = 11;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x12ActionPerformed
 
     private void Casilla15x13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x13ActionPerformed
         int x = 14;
         int y = 12;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x13ActionPerformed
 
     private void Casilla15x14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x14ActionPerformed
         int x = 14;
         int y = 13;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x14ActionPerformed
 
     private void Casilla15x15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Casilla15x15ActionPerformed
         int x = 14;
         int y = 14;
+        
+        construir(x, y);
     }//GEN-LAST:event_Casilla15x15ActionPerformed
 
     
@@ -8421,10 +8942,14 @@ public class PantallaCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnIniciar;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<String> cbxAtaque;
+    private javax.swing.JComboBox<String> cbxConstruir;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblDinero;
     private javax.swing.JLabel lblEnemigo;
     private javax.swing.JLabel lblFase;
+    private javax.swing.JLabel lblMercados;
+    private javax.swing.JLabel lblMundos;
     private javax.swing.JTextArea txaMensajes;
     private javax.swing.JTextField txfMensaje;
     // End of variables declaration//GEN-END:variables
